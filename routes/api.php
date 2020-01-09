@@ -18,6 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::group(['prefix' => 'datastore'], function(){
+    Route::get('/', [
+        'uses' => 'DataStoreController@get',
+        'as'   => 'datastore.get'
+    ]);
+
+    Route::get('/syncData', [
+        'uses' => 'DataStoreController@syncData',
+        'as'   => 'datastore.syncData'
+    ]);
+});
+
 Route::group(['prefix' => 'users'], function(){
     Route::get('/', [
         'uses' => 'UserController@getAll',
@@ -67,10 +79,6 @@ Route::group(['prefix' => 'artikli'], function(){
         'as'   => 'artikli.getForUser'
     ]);
 
-    Route::get('/grouped', [
-        'uses' => 'ArtiklController@getAllGrouped',
-        'as'   => 'artikli.getAllGrouped'
-    ]);
 
     Route::get('/', [
         'uses' => 'ArtiklController@getAll',

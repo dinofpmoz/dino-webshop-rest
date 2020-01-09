@@ -33,7 +33,8 @@ class UserController extends Controller
                 'email'    => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
                 'telefon'  => $request->input('telefon'),
-                'role'     => $request->input('role')
+                'role'     => $request->input('role'),
+                'balance'  => 0
             ]);
             $user->save();
         }
@@ -69,7 +70,8 @@ class UserController extends Controller
             'email'    => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'telefon'  => $request->input('telefon'),
-            'role'     => $request->input('role')
+            'role'     => $request->input('role'),
+            'balance'  => 0
         ]);
 
         return response()->json($user, 200);

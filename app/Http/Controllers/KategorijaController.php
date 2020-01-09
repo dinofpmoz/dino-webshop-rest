@@ -24,6 +24,9 @@ class KategorijaController extends Controller
             ])->get();
             $output[$kategorija->id]['count'] = count($output[$kategorija->id]['artikli']);
         }
+        usort($output, function($item1, $item2){
+            return $item2["count"] > $item1["count"];
+        });
         return response()->json($output);
     }
 

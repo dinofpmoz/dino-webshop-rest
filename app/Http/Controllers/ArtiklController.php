@@ -24,21 +24,6 @@ class ArtiklController extends Controller
         return response()->json($artikli);
     }
 
-public function getAllGrouped()
-{
-    $artikli = Artikl::with([
-        'kategorija',
-        'user' => function ($query){
-            $query->select('id', 'email');
-        }
-    ])->get()->groupBy('kategorija_id');
-
-    $output = null;
-    foreach($artikli as $artikl) {
-        info($artikl);
-    }
-    return response()->json($output);
-}
 
     public function getAll(){
         $artikli = Artikl::with([
