@@ -36,7 +36,7 @@ class ArtiklController extends Controller
     }
 
     public function get($id){
-        $artikl = Artikl::with('kategorija')->find($id);
+        $artikl = Artikl::with('kategorija')->with('user')->find($id);
         return response()->json($artikl);
     }
 
@@ -47,7 +47,7 @@ class ArtiklController extends Controller
                 'naziv' => $request->input('naziv'),
                 'opis' => $request->input('opis'),
                 'cijena' => $request->input('cijena'),
-                'stanje' => $request->input('stanje'),
+                'stanje' => '0',
                 'img_path' => $request->input('img_path'),
                 'kategorija_id' => $request->input('kategorija_id'),
                 'user_id' => $request->input('user_id')
